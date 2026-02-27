@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Chasmiss 🤓❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+    color: #fff;
+}
+
+h1 {
+    margin-top: 30px;
+    font-size: 2.5em;
+}
+
+#typing {
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    margin-top: 20px;
+    border: none;
+    border-radius: 10px;
+    background: #ff4d6d;
+    color: white;
+    cursor: pointer;
+}
+
+#slideshow {
+    margin-top: 30px;
+}
+
+#slideshow img {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    transition: opacity 1s ease-in-out;
+}
+
+#counter {
+    margin-top: 20px;
+    font-size: 1.3em;
+}
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: white;
+    top: -10px;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Happy Birthday Chasmiss 🤓❤️</h1>
+<div id="typing"></div>
+
+<button onclick="startSurprise()">Click Me 💌</button>
+
+<div id="slideshow">
+    <img id="slide" src="Images/photo1.jpg">
+</div>
+
+<div id="counter"></div>
+
+<audio id="music" autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Typing effect
+const text = "Chasmiss ❤️";
+let i = 0;
+function typing() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, 100);
+    }
+}
+typing();
+
+// Slideshow (ALL your photos)
+const images = [
+    "Images/photo1.jpg",
+    "Images/photo2.jpg",
+    "Images/photo3.jpg",
+    "Images/photo4.jpg",
+    "Images/photo6.jpg",
+    "Images/photo7.jpg",
+    "Images/photo8.jpg",
+    "Images/photo9.jpg",
+    "Images/photo10.jpg"
+];
+
+let index = 0;
+setInterval(() => {
+    index = (index + 1) % images.length;
+    const slide = document.getElementById("slide");
+    slide.style.opacity = 0;
+    setTimeout(() => {
+        slide.src = images[index];
+        slide.style.opacity = 1;
+    }, 500);
+}, 3000);
+
+// Love counter
+const startDate = new Date("May 10, 2025");
+function updateCounter() {
+    const now = new Date();
+    const diff = now - startDate;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    document.getElementById("counter").innerHTML =
+        "❤️ We have been together for " + days + " days ❤️";
+}
+updateCounter();
+
+// Confetti
+function startSurprise() {
+    for (let i = 0; i < 100; i++) {
+        let confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 5000);
+    }
+}
+</script>
+
+</body>
+</html>
